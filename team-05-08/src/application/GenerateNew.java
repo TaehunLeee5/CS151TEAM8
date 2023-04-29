@@ -190,10 +190,10 @@ public class GenerateNew implements Initializable {
          courseTaken.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
          //courseTaken.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
-         firstName.setText("Nikunj");
-         lastName.setText("Doe");
+         //firstName.setText("Nikunj");
+         //lastName.setText("Doe");
              
-             // Rest of the initialization code
+             
          
     }  
     
