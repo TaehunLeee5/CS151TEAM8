@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="907.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane prefHeight="606.0" prefWidth="631.0">
+               <children>
+                  <AnchorPane minHeight="750.0" minWidth="830.0">
+                     <children>
+                        <TextArea layoutX="20.0" layoutY="73.0" prefHeight="643.0" prefWidth="790.0" text="Letter of Recommendation&#10;&#10;For: &lt;Student's Full Name&gt; &#10;&#10;To: Graduate Admissions Committee&#10;                                                                                                                                                                                                                                          Date: &lt;Today's Date&gt;&#10;&#10;&#10;&#10;I am writing this letter to recommend my former student &lt;Student's Full Name&gt; who is applying for the &lt;program name&gt; in your school.&#10;&#10;I met &lt;Student's First Name&gt; in &lt;First Semester&gt; when he enrolled in my &quot;&lt;First Course Taken&gt;&quot; course.&#10;&#10;&lt;Student's First Name&gt; earned &lt;letter grade&gt; from this tough course, and this shows how knowledgeable and hard worker &lt;he/she&gt; is.&#10;&#10;[&lt;He/She&gt; also earned &quot;&lt;letter grade&gt;&quot; from my &quot;&lt;course name&gt;&quot;[, &quot;&lt;letter grade&gt;&quot; from my &quot;&lt;course name&gt;&quot;[, ...]]] &lt;course/courses&gt;.&#10;&#10;&lt;Student's First Name&gt; &lt;Coma separated Academic Characteristics&gt;. &lt;He/She&gt; was always &lt;Coma separated Personal Characteristics&gt;.&#10;&#10;Furthermore, I noticed from the term project result, &lt;he/she&gt; developed leadership, time management, and problem-solving skills. &lt;He/She&gt; worked effectively with the team members and delegated tasks appropriately. They were able to deliver a successful project in a timely fashion.&#10;&#10;I believe that &lt;Student's First Name&gt; has the capacity to excel at higher education program and this is my pleasure to highly recommend him.&#10;&#10;Please do not hesitate to contact me with further questions.&#10;&#10;&#10;&#10;&#10;&#10;Very Respectfully, &#10;&lt;Professor's Full Name&gt;&#10;&lt;Professor's title&gt;&#10;&lt;School's name, department's name&gt; &#10;&lt;Professor's email address&gt;&#10; &lt;Professor's phone number&gt;" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <Button layoutX="701.0" layoutY="26.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" text="go back" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

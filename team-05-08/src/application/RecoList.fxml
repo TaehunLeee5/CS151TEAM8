@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="847.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <BorderPane maxHeight="800.0" minWidth="300.0" prefHeight="261.0" prefWidth="784.0" BorderPane.alignment="CENTER">
+         <top>
+            <BorderPane prefHeight="184.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <top>
+                  <BorderPane prefHeight="67.0" prefWidth="784.0" BorderPane.alignment="CENTER">
+                     <left>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="First name: " textAlignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
+                                 <BorderPane.margin>
+                                    <Insets left="30.0" right="10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <center>
+                              <TextField alignment="CENTER" maxWidth="100.0" BorderPane.alignment="CENTER_LEFT" />
+                           </center>
+                        </BorderPane>
+                     </left>
+                     <center>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Last name: " textAlignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
+                                 <BorderPane.margin>
+                                    <Insets left="30.0" right="10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <center>
+                              <TextField alignment="CENTER" maxWidth="100.0" BorderPane.alignment="CENTER_LEFT" />
+                           </center>
+                        </BorderPane>
+                     </center>
+                     <right>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <left>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="Year:" textAlignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
+                                 <BorderPane.margin>
+                                    <Insets left="30.0" right="10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <center>
+                              <TextField alignment="CENTER" maxWidth="100.0" BorderPane.alignment="CENTER_LEFT" />
+                           </center>
+                        </BorderPane>
+                     </right>
+                  </BorderPane>
+               </top>
+               <center>
+                  <BorderPane maxHeight="45.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <Line endX="100.0" startX="-643.5" BorderPane.alignment="CENTER" />
+                     </center>
+                     <top>
+                        <BorderPane maxHeight="50.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                           </center>
+                           <left>
+                              <BorderPane prefHeight="50.0" prefWidth="517.0" BorderPane.alignment="CENTER">
+                                 <center>
+                                    <BorderPane prefHeight="50.0" prefWidth="144.0" BorderPane.alignment="CENTER">
+                                       <left>
+                                          <Label text="Last name:" BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <center>
+                                          <Label text="yyy" BorderPane.alignment="CENTER" />
+                                       </center>
+                                       <BorderPane.margin>
+                                          <Insets left="50.0" />
+                                       </BorderPane.margin>
+                                    </BorderPane>
+                                 </center>
+                                 <left>
+                                    <BorderPane prefHeight="50.0" prefWidth="122.0" BorderPane.alignment="CENTER">
+                                       <center>
+                                          <Label text="xxx" BorderPane.alignment="CENTER" />
+                                       </center>
+                                       <left>
+                                          <Label text="First name: " BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <BorderPane.margin>
+                                          <Insets left="20.0" />
+                                       </BorderPane.margin>
+                                    </BorderPane>
+                                 </left>
+                                 <right>
+                                    <BorderPane prefHeight="50.0" prefWidth="124.0" BorderPane.alignment="CENTER">
+                                       <left>
+                                          <Label text="Year: " BorderPane.alignment="CENTER" />
+                                       </left>
+                                       <center>
+                                          <Label text=" zzz" BorderPane.alignment="CENTER" />
+                                       </center>
+                                       <BorderPane.margin>
+                                          <Insets left="50.0" />
+                                       </BorderPane.margin>
+                                    </BorderPane>
+                                 </right>
+                              </BorderPane>
+                           </left>
+                           <right>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <center>
+                                    <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="edit" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                           </right>
+                        </BorderPane>
+                     </top>
+                     <BorderPane.margin>
+                        <Insets left="35.0" right="15.0" />
+                     </BorderPane.margin>
+                  </BorderPane>
+               </center>
+            </BorderPane>
+         </top>
+      </BorderPane>
+   </center>
+   <top>
+      <BorderPane prefHeight="52.0" prefWidth="784.0" BorderPane.alignment="CENTER">
+         <left>
+            <Label prefHeight="17.0" prefWidth="381.0" text="The List of letter of recommendation" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets left="30.0" />
+               </BorderPane.margin>
+            </Label>
+         </left>
+         <right>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" text="Log out" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="35.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
+      </BorderPane>
+   </top>
+   <bottom>
+      <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="146.0" text="New" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>
