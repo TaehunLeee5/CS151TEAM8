@@ -1,6 +1,2 @@
-Default Password,FirstLogin,Password
-p,FALSE,nikunj
-Nikunj,Rana,age
-hello,nikunj,age
-Eric,Ryan,Ama
-Niu,Rana,78
+Default Password,FirstLogin,Password,Prof Name,Prof Title,School Name,Department,Email,Phone Number
+p,FALSE,nikunj,Ahmad Yazdankhah,Lecturer,SJSU,CS Department,ahmad.yazdankhah@sjsu.edu,(123) 456 7890

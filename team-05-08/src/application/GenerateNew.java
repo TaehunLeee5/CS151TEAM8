@@ -15,7 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import java.time.format.DateTimeFormatter;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.Button;
@@ -92,20 +93,21 @@ public class GenerateNew implements Initializable {
     
     @FXML
     private DatePicker datePicker;
-
+    
+    
     public String getListview(ListView<String> val) {
     	val.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     	ObservableList<String> topics;
     	String list= "";
     	topics = val.getSelectionModel().getSelectedItems();
-    	String[] grades = new String[] { CS151grade.getText(), cs146grade.getText(), cs152grade.getText(), cs154grade.getText(), cs160grade.getText(), cs256grade.getText(), CS166grade.getText() };
+    	
+    	//String[] grades = new String[] { CS151grade.getText(), cs146grade.getText(), cs152grade.getText(), cs154grade.getText(), cs160grade.getText(), cs256grade.getText(), CS166grade.getText() };
     	int i = 0;
     	for (String m : topics)
     	{	
     		if(val == courseTaken){
     			
-
-    			list += m + ":" + grades[i] + "/ ";
+    			list += m + ":" + "/ ";
     			i++;
     		}else {
     			list += m + "/ ";
@@ -130,7 +132,7 @@ public class GenerateNew implements Initializable {
     	} else {
     		firstSemesterWarning.setText("Please select a value"); 
     	}
-    	String[] inputValues = new String[10];
+    	String[] inputValues = new String[12];
     	inputValues[0] = firstName.getText();
     	inputValues[1] = lastName.getText();
     	LocalDate date = datePicker.getValue();
@@ -140,18 +142,22 @@ public class GenerateNew implements Initializable {
     	inputValues[4] = schoolName.getText();
     	inputValues[5] = programApplying.getValue();
     	inputValues[6] = firstYear.getText();
-    	inputValues[7] = getListview(courseTaken);
-    	inputValues[8] = getListview(academicCharacteristics);
-    	inputValues[9] = getListview(personalCharacteristics);
+    	inputValues[7] = firstSemester.getValue();
+    	inputValues[8] = getListview(courseTaken);
+    	inputValues[9] = getListview(academicCharacteristics);
+    	inputValues[10] = getListview(personalCharacteristics);
+    	inputValues[11] = "-1";
+    	
     	for (int i = 0; i < inputValues.length; i++) {
     	    System.out.println(inputValues[i]);
     	}
-    	
+    	// Create an instance of Controller B and pass the input array as a parameter
+
     	csvwriter newStudentInfo = new csvwriter();
     	newStudentInfo.writeArrayToCsv(inputValues, "src/files/StudentInfo.csv");
-//    	String selectedacademicCharacteristics = getListview(academicCharacteristics);
-//    	String selectedcourseTaken = getListview(courseTaken);
-//    	String selectedpersonalCharacteristics = getListview(personalCharacteristics);
+    	Main m = new Main();
+		m.changeScene("SavedReco.fxml");
+    	
     	
 	}
     
@@ -171,7 +177,7 @@ public class GenerateNew implements Initializable {
          String[] firstSemesterList = csvreader.readcsvfile("src/files/initial_data_.csv","semesters");
          ObservableList<String> list_firstsemester = FXCollections.observableArrayList(firstSemesterList);
          firstSemester.setItems(list_firstsemester);
-         
+           
          String[] academicCharacteristicsList = csvreader.readcsvfile("src/files/initial_data_.csv","academic characteristics");
          ObservableList<String> list_academic = FXCollections.observableArrayList(academicCharacteristicsList);
          academicCharacteristics.getItems().addAll(list_academic);
@@ -190,8 +196,14 @@ public class GenerateNew implements Initializable {
          courseTaken.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
          //courseTaken.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
-         firstName.setText("Nikunj");
-         lastName.setText("Doe");
+//         firstName.setText("Nikunj");
+//         lastName.setText("Rana");
+//         gender.setValue("Male");
+//         programApplying.setValue("Master of Science");
+//         firstSemester.setValue("Spring");
+//         academicCharacteristics.getSelectionModel().selectAll();
+//         personalCharacteristics.getSelectionModel().selectAll();
+//         courseTaken.getSelectionModel().selectAll();
              
              // Rest of the initialization code
          

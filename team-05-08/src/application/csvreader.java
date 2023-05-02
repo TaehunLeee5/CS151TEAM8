@@ -1,5 +1,6 @@
 package application;
 
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -26,6 +27,24 @@ public class csvreader {
 
 	    csvReader.close();
 	    return "no value";
+	}
+	
+	public static String[] searchcsvid(String csvFilename, String value1) throws IOException {
+	    BufferedReader csvReader = new BufferedReader(new FileReader(csvFilename));
+	    String row;
+	    
+	    while ((row = csvReader.readLine()) != null) {
+	        String[] data = row.split(",");
+	        	System.out.println(Arrays.toString(data));
+	            if (data[11].equals(value1)) {
+	            	
+	                csvReader.close();
+	                return data;
+	        }
+	    }
+
+	    csvReader.close();
+	    return new String[0];
 	}
 	
 	
@@ -89,8 +108,5 @@ public class csvreader {
 		
 	}
 	
-	public static void main(String[] args) throws IOException{
-		String a = searchcsv("src/files/usercreds.csv","Nikunj","Rana","age");
-		System.out.println(a);
-	}
+	
 }
