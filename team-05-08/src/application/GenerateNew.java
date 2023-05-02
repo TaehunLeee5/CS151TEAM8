@@ -196,7 +196,7 @@ public class GenerateNew implements Initializable {
          courseTaken.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
          //courseTaken.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
-<<<<<<< HEAD
+
 //         firstName.setText("Nikunj");
 //         lastName.setText("Rana");
 //         gender.setValue("Male");
@@ -205,10 +205,8 @@ public class GenerateNew implements Initializable {
 //         academicCharacteristics.getSelectionModel().selectAll();
 //         personalCharacteristics.getSelectionModel().selectAll();
 //         courseTaken.getSelectionModel().selectAll();
-=======
-         //firstName.setText("Nikunj");
-         //lastName.setText("Doe");
->>>>>>> branch 'master' of https://github.com/TaehunLeee5/CS151TEAM8.git
+
+
              
              
          
