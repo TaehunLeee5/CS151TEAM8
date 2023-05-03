@@ -1,6 +1,6 @@
 
 package application;
-
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -12,6 +12,25 @@ public class csvwriter {
 	
 	
 	
+	public static void deleteRowWithIdMinusOne(String filename) throws IOException {
+        File inputFile = new File(filename);
+
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        List<String> lines = new ArrayList<>();
+        String currentLine;
+        while ((currentLine = reader.readLine()) != null) {
+            if (!currentLine.contains("-1")) {
+                lines.add(currentLine);
+            }
+        }
+        reader.close();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
+        for (String line : lines) {
+            writer.write(line + System.lineSeparator());
+        }
+        writer.close();
+    }
 
 	public void writeArrayToCsv(String[] values, String csvFilePath) throws IOException {
 		FileWriter fileWriter = new FileWriter(csvFilePath, true);
@@ -65,10 +84,9 @@ public class csvwriter {
         
     }
 	
-//	public static void main(String[] args) throws IOException{
-//		String[] a = {"Nikunj", "Rana", "05-09-2023", "Male", "", "Master of Science", "", "Spring", "CS151:/ CS166:/ CS154:/ CS160:/ CS256:/ CS146:/ CS152:/", "submitted well-written assignments/ participated in all of my class activities/ worked hard/ was very well prepared for every exam and assignment/ picked up new skills quickly/ was able to excel academically at the top of my class/", "very passionate/ very enthusiastic/ punctual/ attentive/ polite/", "-1"};
-//		writeArrayToCsv(a,"src/files/StudentInfo.csv");
-//	}
+	public static void main(String[] args) throws IOException{
+		deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
+	}
 	
 }
 

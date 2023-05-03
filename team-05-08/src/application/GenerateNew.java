@@ -132,6 +132,8 @@ public class GenerateNew implements Initializable {
     	} else {
     		firstSemesterWarning.setText("Please select a value"); 
     	}
+    	csvwriter newStudentInfo = new csvwriter();
+    	newStudentInfo.deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
     	String[] inputValues = new String[12];
     	inputValues[0] = firstName.getText();
     	inputValues[1] = lastName.getText();
@@ -153,7 +155,7 @@ public class GenerateNew implements Initializable {
     	}
     	// Create an instance of Controller B and pass the input array as a parameter
 
-    	csvwriter newStudentInfo = new csvwriter();
+    	
     	newStudentInfo.writeArrayToCsv(inputValues, "src/files/StudentInfo.csv");
     	Main m = new Main();
 		m.changeScene("SavedReco.fxml");
@@ -196,19 +198,17 @@ public class GenerateNew implements Initializable {
          courseTaken.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
          //courseTaken.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
-<<<<<<< HEAD
-//         firstName.setText("Nikunj");
-//         lastName.setText("Rana");
-//         gender.setValue("Male");
-//         programApplying.setValue("Master of Science");
-//         firstSemester.setValue("Spring");
-//         academicCharacteristics.getSelectionModel().selectAll();
-//         personalCharacteristics.getSelectionModel().selectAll();
-//         courseTaken.getSelectionModel().selectAll();
-=======
-         //firstName.setText("Nikunj");
-         //lastName.setText("Doe");
->>>>>>> branch 'master' of https://github.com/TaehunLeee5/CS151TEAM8.git
+
+         firstName.setText("Nikunj");
+         lastName.setText("Rana");
+         gender.setValue("Male");
+         programApplying.setValue("Master of Science");
+         firstSemester.setValue("Spring");
+         academicCharacteristics.getSelectionModel().selectAll();
+         personalCharacteristics.getSelectionModel().selectAll();
+         courseTaken.getSelectionModel().selectAll();
+
+
              
              
          

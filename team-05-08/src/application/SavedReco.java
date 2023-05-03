@@ -26,7 +26,7 @@ public class SavedReco implements Initializable {
 
 
 	@FXML
-	private TextArea textname;
+	private TextArea textname = new TextArea();
 	
 	public String getString(String arr) {
 		
@@ -41,9 +41,11 @@ public class SavedReco implements Initializable {
 	    String result = sb.toString();
 	    return result;
 	}
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
 		try {
+			
             csvreader newid = new csvreader();
             String genderUsersmall = "";
             String genderUserCap = "";
@@ -73,10 +75,11 @@ public class SavedReco implements Initializable {
             "I believe that " + userVal[0] + " has the capacity to excel at higher education program and this is my pleasure to highly recommend him.\n\n" + 
             "Please do not hesitate to contact me with further questions.\n\n\n" + "Very Respectfully,\n\n" + profName + "\n\n" + profTitle + "\n"
             + profSchool + "\n" + profDepartment + "\n" + profEmail + "\n" + profNumber;
-	    
+            
             // Set the text in the TextArea
             textname.setText(textToSet);
             //textname. setEditable(false);
+            //Code for updating the textarea column for rowid = -1
 		} catch (IOException e) {
             e.printStackTrace();
         }
