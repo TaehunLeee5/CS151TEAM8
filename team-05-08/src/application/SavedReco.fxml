@@ -15,7 +15,7 @@
                   <AnchorPane minHeight="750.0" minWidth="830.0" prefHeight="816.0" prefWidth="833.0">
                      <children>
                         <TextArea fx:id="textname" layoutX="20.0" layoutY="73.0" prefHeight="643.0" prefWidth="790.0" wrapText="true" />
-                        <Button layoutX="372.0" layoutY="730.0" mnemonicParsing="false" onAction="#SaveButton" text="Button" />
+                        <Button layoutX="372.0" layoutY="730.0" mnemonicParsing="false" onAction="#SaveButton" text="Save" />
                      </children>
                   </AnchorPane>
                </children>

@@ -47,7 +47,37 @@ public class csvreader {
 	    return new String[0];
 	}
 	
-	
+	public int findrow(String filePath,int i) {
+		BufferedReader reader = null;
+		try {
+			
+			String line = "";
+			int count = 0;
+			reader = new BufferedReader(new FileReader(filePath));
+			while((line = reader.readLine()) != null) {
+			    String[] fields = line.split(",");
+			    if(fields[11].equalsIgnoreCase("-1")) {
+			    	System.out.println(count);
+			    	return count;
+			    } else {
+			    	count = count + 1; 
+			    }
+			}
+		} 
+		catch (Exception ex) {
+				   ex.printStackTrace();
+		} 
+		finally {
+			try {
+			    reader.close();
+			   } catch (Exception e) {
+			    e.printStackTrace();
+			   }
+			  }
+		
+		return -1;
+		
+	}
 	
 	// readcsvfile:- read the initial data file and send values for different attributes like gender,courses,etc.
 	public static String[] readcsvfile(String filePath,String colName) {
@@ -108,5 +138,7 @@ public class csvreader {
 		
 	}
 	
-	
+//	public static void main(String[] args) {
+//		int g = findrow("src/files/StudentInfo.csv",-1);
+//	}
 }

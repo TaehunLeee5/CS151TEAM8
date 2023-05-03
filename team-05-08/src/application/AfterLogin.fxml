@@ -60,7 +60,7 @@
                         <AnchorPane prefHeight="115.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
                      </bottom>
                      <center>
-                        <Button fx:id="generateNew" mnemonicParsing="false" text="Generate a new letter" BorderPane.alignment="CENTER" />
+                        <Button fx:id="generateNew" mnemonicParsing="false" onAction="#userGenerate" text="Generate a new letter" BorderPane.alignment="CENTER" />
                      </center>
                   </BorderPane>
                </bottom>

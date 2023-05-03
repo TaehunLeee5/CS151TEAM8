@@ -53,17 +53,17 @@ public class csvwriter {
 	
 	// updatecsv:-  Updates the value present at that particular row and column index in datafile.
 	
-	public void updatecsv(int row,int col,String newValue) throws IOException {
-		String filePath = "src/files/usercreds.csv";
+	public void updatecsv(String filePath,int row,int col,String newValue) throws IOException {
 
         File file = new File(filePath);
         BufferedReader reader = new BufferedReader(new FileReader(file));
         StringBuilder sb = new StringBuilder();
         String line;
         int rowIndex = 0;
+        System.out.println("here");
         while ((line = reader.readLine()) != null) {
             if (rowIndex == row) {
-            	
+            	System.out.println(line);
                 String[] fields = line.split(",");
                 
                 if (col <= fields.length) {
@@ -84,9 +84,9 @@ public class csvwriter {
         
     }
 	
-	public static void main(String[] args) throws IOException{
-		deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
-	}
+//	public static void main(String[] args) throws IOException{
+//		updatecsv("src/files/StudentInfo.csv",4,12, "nikunj");
+//	}
 	
 }
 

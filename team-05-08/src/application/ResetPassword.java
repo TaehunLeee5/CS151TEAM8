@@ -35,15 +35,15 @@ public class ResetPassword {
 		
 		if(LoginVal.equals("FALSE") && oldPassword.getText().toString().equals(PassValue) && newPassword.getText().toString().equals(renewPassword.getText().toString())) {
 			String nn = newPassword.getText().toString();
-			resetpw.updatecsv(1,2, nn);
-			resetpw.updatecsv(1,1, "FALSE");
+			resetpw.updatecsv("src/files/usercreds.csv",1,2, nn);
+			resetpw.updatecsv("src/files/usercreds.csv",1,1, "FALSE");
 			m.changeScene("Login.fxml");
 			
 		}
 		else if(LoginVal.equals("FALSE") && oldPassword.getText().toString().equals(LatestPass) && newPassword.getText().toString().equals(renewPassword.getText().toString())){
 			
 			String nn = newPassword.getText().toString();
-			resetpw.updatecsv(1,2, nn);
+			resetpw.updatecsv("src/files/usercreds.csv",1,2, nn);
 			m.changeScene("Login.fxml");
 		}
 		else {

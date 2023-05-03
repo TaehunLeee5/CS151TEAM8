@@ -25,9 +25,26 @@ import javafx.scene.control.TextField;
 public class SavedReco implements Initializable {
 
 
+	 @FXML
+	    private TextArea textname;
 	@FXML
-	private TextArea textname = new TextArea();
-	
+    public void SaveButton(ActionEvent event) throws IOException {
+		csvreader newob = new csvreader();
+		csvwriter newval = new csvwriter();
+		
+		int row = newob.findrow("src/files/StudentInfo.csv",-1);
+		String newid = newob.getPassword(9);
+		System.out.println(newid);
+		System.out.println(row);
+		String text = textname.getText();
+		String textval = "\"" + text + "\"";
+		String replacedString = textval.replaceAll("\n", "\\n");
+		//newval.updatecsv("src/files/StudentInfo.csv",row, 12, replacedString);
+		newval.updatecsv("src/files/StudentInfo.csv",row,11,newid);
+		newval.updatecsv("src/files/usercreds.csv",1, 9, Integer.toString(Integer.parseInt(newid)+1));
+		Main m = new Main();
+		m.changeScene("AfterLogin.fxml");
+    }
 	public String getString(String arr) {
 		
 	    String[] values = arr.split("/");
@@ -75,7 +92,7 @@ public class SavedReco implements Initializable {
             "I believe that " + userVal[0] + " has the capacity to excel at higher education program and this is my pleasure to highly recommend him.\n\n" + 
             "Please do not hesitate to contact me with further questions.\n\n\n" + "Very Respectfully,\n\n" + profName + "\n\n" + profTitle + "\n"
             + profSchool + "\n" + profDepartment + "\n" + profEmail + "\n" + profNumber;
-            
+            System.out.println(textToSet);
             // Set the text in the TextArea
             textname.setText(textToSet);
             //textname. setEditable(false);

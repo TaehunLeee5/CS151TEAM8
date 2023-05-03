@@ -133,8 +133,8 @@ public class GenerateNew implements Initializable {
     		firstSemesterWarning.setText("Please select a value"); 
     	}
     	csvwriter newStudentInfo = new csvwriter();
-    	newStudentInfo.deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
-    	String[] inputValues = new String[12];
+    	//newStudentInfo.deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
+    	String[] inputValues = new String[13];
     	inputValues[0] = firstName.getText();
     	inputValues[1] = lastName.getText();
     	LocalDate date = datePicker.getValue();
@@ -149,6 +149,7 @@ public class GenerateNew implements Initializable {
     	inputValues[9] = getListview(academicCharacteristics);
     	inputValues[10] = getListview(personalCharacteristics);
     	inputValues[11] = "-1";
+    	inputValues[12]= " ";
     	
     	for (int i = 0; i < inputValues.length; i++) {
     	    System.out.println(inputValues[i]);

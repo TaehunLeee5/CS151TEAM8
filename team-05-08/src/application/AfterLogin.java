@@ -7,6 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import javafx.collections.transformation.SortedList;
@@ -43,6 +46,7 @@ public class AfterLogin implements Initializable{
 	
 	public void userGenerate(ActionEvent event) throws IOException{
 		Main m = new Main();
+		System.out.println("here");
 		m.changeScene("GenerateNew.fxml");
 	}	
 	
@@ -116,11 +120,35 @@ public class AfterLogin implements Initializable{
 		lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		year.setCellValueFactory(new PropertyValueFactory<>("year"));
 		
-		Student student1 = new Student(1, "John", "Doe",2023);
-		Student student2 = new Student(2, "James", "Smith",2022);
-		Student student3 = new Student(3, "Phil", "Lee",2021);
-		
-		dataList.addAll(student1, student2, student3);
+		try {
+		    // Create a new file reader and pass the CSV file path
+		    FileReader fileReader = new FileReader("src/files/StudentInfo.csv");
+		    BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+		    // Read the header row
+		    String header = bufferedReader.readLine();
+
+		    // Read each line and create a new Student object
+		    String line;
+		    while ((line = bufferedReader.readLine()) != null) {
+		        String[] fields = line.split(",");
+		        System.out.println(line);
+		        int id = Integer.parseInt(fields[11]);
+		        String firstName = fields[0];
+		        String lastName = fields[1];
+		        System.out.println(fields[6]);
+		        int year = Integer.parseInt(fields[6]);
+
+		        // Create a new Student object and add it to the list
+		        Student student = new Student(id, firstName, lastName, year);
+		        dataList.add(student);
+		    }
+
+		    // Close the file reader
+		    bufferedReader.close();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
 		
 		FilteredList<Student> filterdData = new FilteredList<>(dataList, b -> true);
 		
