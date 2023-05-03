@@ -198,17 +198,6 @@ public class GenerateNew implements Initializable {
          courseTaken.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
          //courseTaken.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
-
-         firstName.setText("Nikunj");
-         lastName.setText("Rana");
-         gender.setValue("Male");
-         programApplying.setValue("Master of Science");
-         firstSemester.setValue("Spring");
-         academicCharacteristics.getSelectionModel().selectAll();
-         personalCharacteristics.getSelectionModel().selectAll();
-         courseTaken.getSelectionModel().selectAll();
-
-
              
              
          
