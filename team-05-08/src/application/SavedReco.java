@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
 
 public class SavedReco implements Initializable {
 
-
+	String[] userVal;
 	 @FXML
 	    private TextArea textname;
 	@FXML
@@ -39,6 +39,9 @@ public class SavedReco implements Initializable {
 		String text = textname.getText();
 		String textval = "\"" + text + "\"";
 		String replacedString = textval.replaceAll("\n", "\\n");
+		String filename = "src/outputfiles/" + userVal[0] + "_" + userVal[1] + "_" + newid + ".txt";
+		System.out.println(filename);
+		newval.saveStringToFile(filename, text);
 		//newval.updatecsv("src/files/StudentInfo.csv",row, 12, replacedString);
 		newval.updatecsv("src/files/StudentInfo.csv",row,11,newid);
 		newval.updatecsv("src/files/usercreds.csv",1, 9, Integer.toString(Integer.parseInt(newid)+1));
@@ -66,7 +69,7 @@ public class SavedReco implements Initializable {
             csvreader newid = new csvreader();
             String genderUsersmall = "";
             String genderUserCap = "";
-            String[] userVal = newid.searchcsvid("src/files/StudentInfo.csv", "-1");
+            userVal = newid.searchcsvid("src/files/StudentInfo.csv", "-1");
             String profName = newid.getPassword(3);
             String profTitle = newid.getPassword(4);
             String profSchool = newid.getPassword(5);

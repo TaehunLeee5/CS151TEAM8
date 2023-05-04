@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 import java.io.BufferedReader;
@@ -25,6 +27,10 @@ public class AfterLogin implements Initializable{
 	
 	@FXML
 	private Button logout;
+	@FXML
+    private Button edit;
+    @FXML
+    private Button delete;
 	@FXML
 	private Button generateNew;
 	@FXML
@@ -50,16 +56,52 @@ public class AfterLogin implements Initializable{
 		m.changeScene("GenerateNew.fxml");
 	}	
 	
-	// deleting a row when you click the 'delete' button
-	public void deleteRowFromTable(ActionEvent event) throws IOException{
-		tableview.getItems().removeAll(tableview.getSelectionModel().getSelectedItem());	
+	public void deleteRowFromTable(ActionEvent event) throws Exception{
+        try {
+            if(tableview.getSelectionModel().getSelectedItem() != null){
+                Student selectedItem = tableview.getSelectionModel().getSelectedItem();
+
+                // assign this variable to the ID number of the clicked row
+                Integer idNum = selectedItem.getID();
+
+                // need to create .deleteRow method?
+                csvwriter.deleteRowWithId("src/files/StudentInfo.csv",idNum.toString());
+            }
+        }
+        catch (NullPointerException ex) {
+            ex.printStackTrace();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        finally {
+            Main m = new Main();
+            m.changeScene("AfterLogin.fxml");
+        }
+    }
 	
-	}
-	
-	// will need to work on the edit function
-	public void editRowFromTable(ActionEvent event) throws IOException{
-		//tableview.getitem().removeall(tableview.SelectionModel().getSelectedItem());	
-	}
+
+    // will need to work on the edit function
+    public void editRowFromTable(ActionEvent event) throws IOException{
+        //tableview.getitem().removeall(tableview.SelectionModel().getSelectedItem());
+        // Check if a row is selected
+        if (tableview.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(AlertType.ERROR, "No row selected.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Get the selected row and assign it to "selectedData" object with all of its data
+        Student selectedData = tableview.getSelectionModel().getSelectedItem();
+
+        // and then bring up the generate a new letter page with pre-filled data to be able to edit
+        //need to Main constructor taking selecetData as an argument
+//        Main m = new Main(selectedData);
+//        m.changeScene("GenerateNew.fxml");
+
+
+    }
 	
 	
 	

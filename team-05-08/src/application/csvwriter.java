@@ -19,7 +19,8 @@ public class csvwriter {
         List<String> lines = new ArrayList<>();
         String currentLine;
         while ((currentLine = reader.readLine()) != null) {
-            if (!currentLine.contains("-1")) {
+        	String[] fields = currentLine.split(",");
+            if (!(fields[11].equals(-1))) {
                 lines.add(currentLine);
             }
         }
@@ -31,7 +32,41 @@ public class csvwriter {
         }
         writer.close();
     }
+	
+	public static void saveStringToFile(String path, String text) {
+		try {
+	        File file = new File("src/files/nik.txt");
+	        file.createNewFile();
+	        FileWriter writer = new FileWriter(file);
+	        writer.write(text);
+	        writer.close();
+	        System.out.println("File saved successfully.");
+	    } catch (IOException e) {
+	    	System.out.println(e.getMessage());
+	        e.printStackTrace();
+	    }
+	}
+	
+	public static void deleteRowWithId(String filename, String id) throws IOException {
+        File inputFile = new File(filename);
 
+        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+        List<String> lines = new ArrayList<>();
+        String currentLine;
+        while ((currentLine = reader.readLine()) != null) {
+        	String[] fields = currentLine.split(",");
+            if (!(fields[11].equals(id))) {
+                lines.add(currentLine);
+            }
+        }
+        reader.close();
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(inputFile));
+        for (String line : lines) {
+            writer.write(line + System.lineSeparator());
+        }
+        writer.close();
+    }
 	public void writeArrayToCsv(String[] values, String csvFilePath) throws IOException {
 		FileWriter fileWriter = new FileWriter(csvFilePath, true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -84,9 +119,8 @@ public class csvwriter {
         
     }
 	
-//	public static void main(String[] args) throws IOException{
-//		updatecsv("src/files/StudentInfo.csv",4,12, "nikunj");
-//	}
+	public static void main(String[] args) throws IOException{
+		saveStringToFile("src/files/nik.txt", "Hi");	}
 	
 }
 

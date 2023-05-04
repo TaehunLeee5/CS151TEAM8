@@ -10,8 +10,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.DatePicker;
 import java.time.LocalDate;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +27,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class GenerateNew implements Initializable {
 	
@@ -93,7 +100,41 @@ public class GenerateNew implements Initializable {
     
     @FXML
     private DatePicker datePicker;
-    
+    private List<String> grades = new ArrayList<>();
+
+    @FXML
+    private GridPane gridPane;
+
+    @FXML
+    private TextField classField;
+
+    @FXML
+    private TextField gradeField;
+
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private void handleSaveButton() {
+        String className = classField.getText();
+        String grade = gradeField.getText();
+        grades.add(className + ": " + grade);
+        saveGrades();
+        classField.clear();
+        gradeField.clear();
+    }
+    private void saveGrades() {
+        Path path = Paths.get("StudentInfo.csv");
+        try (FileWriter writer = new FileWriter(path.toFile())) {
+            StringBuilder sb = new StringBuilder();
+            for (String grade : grades) {
+                sb.append(grade).append(" / ");
+            }
+            writer.write(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     public String getListview(ListView<String> val) {
     	val.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -162,7 +203,13 @@ public class GenerateNew implements Initializable {
     	
     	
 	}
-    
+//    @Override
+//    public void start(Stage primaryStage) throws Exception {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("GenerateNew.fxml"));
+//        loader.setController(this);
+//        saveButton.setOnAction(e -> handleSaveButton());
+//
+//    }
     
     
     @Override
@@ -198,7 +245,14 @@ public class GenerateNew implements Initializable {
          courseTaken.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
          //courseTaken.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
-             
+         firstName.setText("Nikunj");
+         lastName.setText("Rana");
+         gender.setValue("Male");
+         programApplying.setValue("Master of Science");
+         firstSemester.setValue("Spring");
+         academicCharacteristics.getSelectionModel().selectAll();
+         personalCharacteristics.getSelectionModel().selectAll();
+         courseTaken.getSelectionModel().selectAll();  
              
          
     }  
