@@ -12,7 +12,7 @@ public class csvwriter {
 	
 	
 	
-	public static void deleteRowWithIdMinusOne(String filename) throws IOException {
+	public void deleteRowWithIdMinusOne(String filename) throws IOException {
         File inputFile = new File(filename);
 
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -33,9 +33,9 @@ public class csvwriter {
         writer.close();
     }
 	
-	public static void saveStringToFile(String path, String text) {
+	public void saveStringToFile(String path, String text) {
 		try {
-	        File file = new File("src/files/nik.txt");
+	        File file = new File(path);
 	        file.createNewFile();
 	        FileWriter writer = new FileWriter(file);
 	        writer.write(text);
@@ -47,7 +47,7 @@ public class csvwriter {
 	    }
 	}
 	
-	public static void deleteRowWithId(String filename, String id) throws IOException {
+	public void deleteRowWithId(String filename, String id) throws IOException {
         File inputFile = new File(filename);
 
         BufferedReader reader = new BufferedReader(new FileReader(inputFile));
@@ -119,8 +119,7 @@ public class csvwriter {
         
     }
 	
-	public static void main(String[] args) throws IOException{
-		saveStringToFile("src/files/nik.txt", "Hi");	}
+	
 	
 }
 

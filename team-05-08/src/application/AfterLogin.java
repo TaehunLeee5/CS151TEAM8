@@ -63,9 +63,9 @@ public class AfterLogin implements Initializable{
 
                 // assign this variable to the ID number of the clicked row
                 Integer idNum = selectedItem.getID();
-
+                csvwriter s = new csvwriter();
                 // need to create .deleteRow method?
-                csvwriter.deleteRowWithId("src/files/StudentInfo.csv",idNum.toString());
+                s.deleteRowWithId("src/files/StudentInfo.csv",idNum.toString());
             }
         }
         catch (NullPointerException ex) {
