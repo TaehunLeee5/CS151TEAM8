@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -7,7 +8,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.GenerateNew">
@@ -26,7 +26,7 @@
       </BorderPane>
    </top>
    <bottom>
-      <BorderPane prefHeight="771.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="739.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <bottom>
             <BorderPane prefHeight="697.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <center>
@@ -59,7 +59,7 @@
                   <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </right>
                <bottom>
-                  <BorderPane prefHeight="88.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                  <BorderPane prefHeight="656.0" prefWidth="651.0" BorderPane.alignment="CENTER">
                      <left>
                         <Label prefHeight="18.0" prefWidth="137.0" text="Target school's name" BorderPane.alignment="CENTER" />
                      </left>
@@ -133,34 +133,31 @@
                                           </BorderPane>
                                        </bottom>
                                        <left>
-                                          <BorderPane prefHeight="62.0" prefWidth="386.0" BorderPane.alignment="CENTER">
-                                             <right>
-                                                <ListView fx:id="courseTaken" prefHeight="62.0" prefWidth="175.0" BorderPane.alignment="CENTER" />
-                                             </right>
+                                          <BorderPane prefHeight="80.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                                              <left>
                                                 <Label text="List of other courses taken with the same professor: " BorderPane.alignment="CENTER" />
                                              </left>
+                                             <top>
+                                                <Button mnemonicParsing="false" onAction="#addcourse" text="add" BorderPane.alignment="CENTER" />
+                                             </top>
+                                             <right>
+                                                <TextField fx:id="gradeField" prefHeight="26.0" prefWidth="137.0" promptText="letter grade" BorderPane.alignment="CENTER">
+                                                   <BorderPane.margin>
+                                                      <Insets left="5.0" />
+                                                   </BorderPane.margin>
+                                                </TextField>
+                                             </right>
+                                             <center>
+                                                <ComboBox fx:id="courseTaken" prefWidth="150.0" BorderPane.alignment="CENTER" />
+                                             </center>
                                           </BorderPane>
                                        </left>
                                        <right>
-                                          <BorderPane prefHeight="175.0" prefWidth="275.0" BorderPane.alignment="CENTER">
+                                          <BorderPane prefHeight="80.0" prefWidth="145.0" BorderPane.alignment="CENTER">
                                              <top>
                                                 <Label prefHeight="28.0" prefWidth="162.0" text="Press Ctrl to multi select" BorderPane.alignment="CENTER" />
                                              </top></BorderPane>
                                        </right>
-                                       <center>
-                                          <VBox prefHeight="175.0" prefWidth="153.0" BorderPane.alignment="CENTER">
-                                             <children>
-                                                <TextField fx:id="CS151grade" promptText="CS151 letter grade" />
-                                                <TextField fx:id="CS166grade" promptText="CS166 letter grade" />
-                                                <TextField fx:id="cs154grade" promptText="CS154 letter grade" />
-                                                <TextField fx:id="cs160grade" promptText="CS160 letter grade" />
-                                                <TextField fx:id="cs256grade" promptText="CS256 letter grade" />
-                                                <TextField fx:id="cs146grade" promptText="CS146 letter grade" />
-                                                <TextField fx:id="cs152grade" prefHeight="19.0" prefWidth="139.0" promptText="CS152 letter grade" />
-                                             </children>
-                                          </VBox>
-                                       </center>
                                     </BorderPane>
                                  </bottom>
                                  <right>
@@ -190,7 +187,10 @@
                         </BorderPane>
                      </bottom>
                      <right>
-                        <BorderPane prefHeight="26.0" prefWidth="310.0" BorderPane.alignment="CENTER" />
+                        <BorderPane prefHeight="26.0" prefWidth="310.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <Label fx:id="warningSign" text="Label" BorderPane.alignment="CENTER" />
+                           </center></BorderPane>
                      </right>
                      <center>
                         <TextField fx:id="schoolName" prefHeight="26.0" prefWidth="150.0" promptText="School name" BorderPane.alignment="CENTER" />
@@ -225,7 +225,10 @@
                </left></BorderPane>
          </right>
          <top>
-            <BorderPane prefHeight="182.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+            <BorderPane prefHeight="157.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <center>
+                  <ListView fx:id="listviewcourse" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center></BorderPane>
          </top>
       </BorderPane>
    </bottom>

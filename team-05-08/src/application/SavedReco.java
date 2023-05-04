@@ -70,25 +70,46 @@ public class SavedReco implements Initializable {
             String genderUsersmall = "";
             String genderUserCap = "";
             userVal = newid.searchcsvid("src/files/StudentInfo.csv", "-1");
+            String courseAll = userVal[8];
+            if(userVal[3].equals("Male")) {
+           	 genderUsersmall = "he";
+           	 genderUserCap = "He";
+           } else {
+           	 genderUsersmall = "she";
+           	 genderUserCap = "She";
+           }
+            String[] array = courseAll.split("/");
+            String[] parts = array[0].split(":");
+            String firstcourse = parts[0].trim();
+            String firstgrade = parts[1].trim();
+            String othercourse;
+            if(array.length == 1) {
+                
+                othercourse = "";
+            } else {
+                othercourse = genderUserCap + " also earned ";
+                for(int i=1;i<=array.length-2;i++){
+                    parts = array[i].split(":");
+                    othercourse = othercourse + parts[1].trim() + " from my course " + parts[0].trim() + ",";
+                }
+                othercourse = othercourse.substring(0, othercourse.length() - 1).concat(".");
+            }
+            
+            System.out.println(othercourse);
+
             String profName = newid.getPassword(3);
             String profTitle = newid.getPassword(4);
             String profSchool = newid.getPassword(5);
             String profDepartment = newid.getPassword(6);
             String profEmail = newid.getPassword(7);
             String profNumber = newid.getPassword(8);
-            if(userVal[3].equals("Male")) {
-            	 genderUsersmall = "he";
-            	 genderUserCap = "He";
-            } else {
-            	 genderUsersmall = "she";
-            	 genderUserCap = "She";
-            }
+            
             
             String textToSet = "Letter of Recommendation\n\n" + "For: " + userVal[0] + " " + userVal[1] + "\n\n" + "To: Graduate Admissions Committee\n"
             + "Date: " + userVal[2] + "\n\n\n\n" + "I am writing this letter to recommend my former student " + userVal[0] + " " + userVal[1] + " who is"
             + " applying for the " + userVal[5] + " in your school. " + "I met " + userVal[0] + " in " + userVal[7] + " ," + userVal[6] + " when he enrolled"
-            + " in my" + " need best course here " + "course.\n\n" + userVal[0] + " earned " + "best grade " + "from this tough course, and this shows how "
-            + "knowledgable and hardworking " + genderUsersmall + " is.\n\n" + userVal[0] + " " + getString(userVal[9].substring(0, userVal[9].lastIndexOf("/")))
+            + " in my " + firstcourse + " course.\n\n" + userVal[0] + " earned " + firstgrade + " from this tough course, and this shows how "
+            + "knowledgable and hardworking " + genderUsersmall + " is.\n\n" + othercourse + "\n\n" + userVal[0] + " " + getString(userVal[9].substring(0, userVal[9].lastIndexOf("/")))
             + ". " + genderUserCap + " was always " + getString(userVal[9].substring(0, userVal[9].lastIndexOf("/"))) + ".\n\n" + "Furthermore, I noticed from "
             + "the term project result, " + genderUsersmall + " developed leadership, time management, and problem-solving skills. " + genderUsersmall + 
             "worked effectively with the team members and delegated tasks appropriately. They were able to deliver a successful project in a timely fashion.\n\n" +

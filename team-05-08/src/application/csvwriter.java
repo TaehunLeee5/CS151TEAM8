@@ -35,6 +35,10 @@ public class csvwriter {
 	
 	public void saveStringToFile(String path, String text) {
 		try {
+			System.out.println("____________________________________________________________");
+			System.out.println(path);
+			System.out.println(text);
+			System.out.println("____________________________________________________________");
 	        File file = new File(path);
 	        file.createNewFile();
 	        FileWriter writer = new FileWriter(file);

@@ -37,7 +37,8 @@ public class GenerateNew implements Initializable {
 	
 	@FXML
     private TextField cs146grade;
-
+	
+	
     @FXML
     private TextField cs152grade;
 
@@ -63,7 +64,7 @@ public class GenerateNew implements Initializable {
     private TextField courseLettergrade;
 
     @FXML
-    private ListView<String> courseTaken;
+    private ComboBox<String> courseTaken;
 
     @FXML
     private TextField firstName;
@@ -82,7 +83,8 @@ public class GenerateNew implements Initializable {
 
     @FXML
     private TextField lastName;
-
+    @FXML
+    private ListView<String> listviewcourse;
     @FXML
     private ListView<String> personalCharacteristics;
 
@@ -100,7 +102,7 @@ public class GenerateNew implements Initializable {
     
     @FXML
     private DatePicker datePicker;
-    private List<String> grades = new ArrayList<>();
+    private List<String> coursegradelist = new ArrayList<>();
 
     @FXML
     private GridPane gridPane;
@@ -113,46 +115,47 @@ public class GenerateNew implements Initializable {
 
     @FXML
     private Button saveButton;
-
-    @FXML
-    private void handleSaveButton() {
-        String className = classField.getText();
-        String grade = gradeField.getText();
-        grades.add(className + ": " + grade);
-        saveGrades();
-        classField.clear();
-        gradeField.clear();
-    }
-    private void saveGrades() {
-        Path path = Paths.get("StudentInfo.csv");
-        try (FileWriter writer = new FileWriter(path.toFile())) {
-            StringBuilder sb = new StringBuilder();
-            for (String grade : grades) {
-                sb.append(grade).append(" / ");
-            }
-            writer.write(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     
+    
+    @FXML
+    void addcourse(ActionEvent event) {
+        String course = courseTaken.getValue();
+        String grade = gradeField.getText();
+
+        // Add the course and grade to the ArrayList
+        coursegradelist.add(course + "    :     " + grade);
+
+        // Clear the text fields
+        courseTaken.setValue(null);
+        gradeField.clear();
+
+        // Update the ListView
+        ObservableList<String> items = FXCollections.observableArrayList();
+        items.addAll(coursegradelist);
+        listviewcourse.setItems(items);
+    }
+
     public String getListview(ListView<String> val) {
     	val.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     	ObservableList<String> topics;
     	String list= "";
     	topics = val.getSelectionModel().getSelectedItems();
+    	if(val.equals(listviewcourse)) {
+    		topics = val.getItems();    	}
     	
     	//String[] grades = new String[] { CS151grade.getText(), cs146grade.getText(), cs152grade.getText(), cs154grade.getText(), cs160grade.getText(), cs256grade.getText(), CS166grade.getText() };
     	int i = 0;
     	for (String m : topics)
     	{	
-    		if(val == courseTaken){
-    			
-    			list += m + ":" + "/ ";
-    			i++;
-    		}else {
-    			list += m + "/ ";
-    		}
+    		System.out.println(m);
+    		list += m + "/ ";
+//    		if(val == courseTaken){
+//    			
+//    			list += m + ":" + "/ ";
+//    			i++;
+//    		}else {
+//    			
+//    		}
     	    
     	} 
 
@@ -168,41 +171,45 @@ public class GenerateNew implements Initializable {
     
     
     public void userGenerateNew(ActionEvent event) throws IOException{
-    	if (firstSemester.getValue() != null) {
-    	    System.out.println("User has selected: " + firstSemester.getValue());
-    	} else {
-    		firstSemesterWarning.setText("Please select a value"); 
-    	}
-    	csvwriter newStudentInfo = new csvwriter();
-    	//newStudentInfo.deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
-    	String[] inputValues = new String[12];
-    	inputValues[0] = firstName.getText();
-    	inputValues[1] = lastName.getText();
-    	LocalDate date = datePicker.getValue();
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-    	inputValues[2] = date.format(formatter);
-    	inputValues[3] = gender.getValue();
-    	inputValues[4] = schoolName.getText();
-    	inputValues[5] = programApplying.getValue();
-    	inputValues[6] = firstYear.getText();
-    	inputValues[7] = firstSemester.getValue();
-    	inputValues[8] = getListview(courseTaken);
-    	inputValues[9] = getListview(academicCharacteristics);
-    	inputValues[10] = getListview(personalCharacteristics);
-    	inputValues[11] = "-1";
-    	
-    	for (int i = 0; i < inputValues.length; i++) {
-    	    System.out.println(inputValues[i]);
-    	}
-    	// Create an instance of Controller B and pass the input array as a parameter
-
-    	
-    	newStudentInfo.writeArrayToCsv(inputValues, "src/files/StudentInfo.csv");
-    	Main m = new Main();
-		m.changeScene("SavedReco.fxml");
-    	
-    	
-	}
+        try {
+	    	if (firstName.getText() != null || lastName.getText() != null || datePicker.getValue() != null 
+	        		|| gender.getValue() != null ||schoolName.getText() != null || programApplying.getValue() != null || 
+	        		firstYear.getText() != null || firstSemester.getValue() != null ) {
+	            csvwriter newStudentInfo = new csvwriter();
+	            //newStudentInfo.deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
+	            String[] inputValues = new String[12];
+	            inputValues[0] = firstName.getText();
+	            inputValues[1] = lastName.getText();
+	            LocalDate date = datePicker.getValue();
+	            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+	            inputValues[2] = date.format(formatter);
+	            inputValues[3] = gender.getValue();
+	            inputValues[4] = schoolName.getText();
+	            inputValues[5] = programApplying.getValue();
+	            inputValues[6] = firstYear.getText();
+	            inputValues[7] = firstSemester.getValue();
+	            inputValues[8] = getListview(listviewcourse);
+	            inputValues[9] = getListview(academicCharacteristics);
+	            inputValues[10] = getListview(personalCharacteristics);
+	            inputValues[11] = "-1";
+	
+	            for (int i = 0; i < inputValues.length; i++) {
+	                System.out.println(inputValues[i]);
+	            }
+	            // Create an instance of Controller B and pass the input array as a parameter
+	
+	
+	            newStudentInfo.writeArrayToCsv(inputValues, "src/files/StudentInfo.csv");
+	            Main m = new Main();
+	            m.changeScene("SavedReco.fxml");
+	        }
+	    
+        }
+	    catch(Exception ex){
+	    	warning.setText("Please fill out all");
+	    	System.out.println(ex.getMessage());
+	    }
+    }
 //    @Override
 //    public void start(Stage primaryStage) throws Exception {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("GenerateNew.fxml"));
@@ -239,11 +246,10 @@ public class GenerateNew implements Initializable {
          personalCharacteristics.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
          //personalCharacteristics.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
+         
          String[] courseTakenList = csvreader.readcsvfile("src/files/initial_data_.csv","courses");
          ObservableList<String> list_course = FXCollections.observableArrayList(courseTakenList);
-         courseTaken.getItems().addAll(list_course);
-         courseTaken.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-         //courseTaken.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
+         courseTaken.setItems(list_course);
          
          firstName.setText("Nikunj");
          lastName.setText("Rana");
@@ -252,7 +258,7 @@ public class GenerateNew implements Initializable {
          firstSemester.setValue("Spring");
          academicCharacteristics.getSelectionModel().selectAll();
          personalCharacteristics.getSelectionModel().selectAll();
-         courseTaken.getSelectionModel().selectAll();  
+         //courseTaken.getSelectionModel().selectAll();  
              
          
     }  
