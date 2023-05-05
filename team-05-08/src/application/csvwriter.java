@@ -8,10 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.io.*;
+
 public class csvwriter {
-	
-	
-	
+	// deletes a row of csv file 
 	public void deleteRowWithIdMinusOne(String filename) throws IOException {
         File inputFile = new File(filename);
 
@@ -32,7 +31,7 @@ public class csvwriter {
         }
         writer.close();
     }
-	
+	// saving all of the data to csv file
 	public void saveStringToFile(String path, String text) {
 		try {
 			System.out.println("____________________________________________________________");
@@ -51,6 +50,7 @@ public class csvwriter {
 	    }
 	}
 	
+	//Once an user clicks on a row of tableview and clicks on the delete button, it will delete the specific row
 	public void deleteRowWithId(String filename, String id) throws IOException {
         File inputFile = new File(filename);
 
@@ -71,6 +71,7 @@ public class csvwriter {
         }
         writer.close();
     }
+	//Writing using an array into CSV file
 	public void writeArrayToCsv(String[] values, String csvFilePath) throws IOException {
 		FileWriter fileWriter = new FileWriter(csvFilePath, true);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -82,7 +83,6 @@ public class csvwriter {
                 bufferedWriter.write(",");
             }
         }
-        
         bufferedWriter.newLine();
         bufferedWriter.close();
         fileWriter.close();
@@ -91,7 +91,6 @@ public class csvwriter {
 	
 	
 	// updatecsv:-  Updates the value present at that particular row and column index in datafile.
-	
 	public void updatecsv(String filePath,int row,int col,String newValue) throws IOException {
 
         File file = new File(filePath);
