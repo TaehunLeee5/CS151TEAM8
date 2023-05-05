@@ -11,10 +11,9 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
-
+// login class with FXML variables and methods
 public class Login {
-	public Login() {
-		
+	public Login() {		
 	}
 	
 	@FXML
@@ -70,10 +69,12 @@ public class Login {
 		}
 	}
 	
+	//method that calls a method called "resetPassword" below
 	public void userResetpassword(ActionEvent event) throws IOException{
 		resetPassword();
 	}
 	
+	// method that directs an user to resetpassword page
 	private void resetPassword() throws IOException{
 		Main m = new Main();
 		m.changeScene("ResetPassword.fxml");
