@@ -11,7 +11,8 @@ public class CsvReaderq {
         String csvFile = "src/files/StudentInfo.csv";
         String line;
         int rowCount = 0;
-        
+      
+        //reads how many rows are there in csvFile and prints out the number
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 
             while ((line = br.readLine()) != null) {
