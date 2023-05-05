@@ -13,8 +13,7 @@ public class csvreader {
 	public static String searchcsv(String csvFilename, String value1, String value2, String value3) throws IOException {
 	    BufferedReader csvReader = new BufferedReader(new FileReader(csvFilename));
 	    String row;
-
-	    
+		
 	    while ((row = csvReader.readLine()) != null) {
 	        String[] data = row.split(",");
 
@@ -44,7 +43,6 @@ public class csvreader {
 	                return data;
 	        }
 	    }
-
 	    csvReader.close();
 	    return new String[0];
 	}
@@ -53,7 +51,6 @@ public class csvreader {
 	public int findrow(String filePath,int i) {
 		BufferedReader reader = null;
 		try {
-			
 			String line = "";
 			int count = 0;
 			reader = new BufferedReader(new FileReader(filePath));
@@ -77,7 +74,6 @@ public class csvreader {
 			    e.printStackTrace();
 			   }
 			  }
-		
 		return -1;
 		
 	}
@@ -85,8 +81,7 @@ public class csvreader {
 	// readcsvfile:- read the initial data file and send values for different attributes like gender,courses,etc.
 	public static String[] readcsvfile(String filePath,String colName) {
 		BufferedReader reader = null;
-		try {
-			
+		try {	
 			String line = "";
 			reader = new BufferedReader(new FileReader(filePath));
 			while((line = reader.readLine()) != null) {
@@ -106,11 +101,8 @@ public class csvreader {
 			    e.printStackTrace();
 			   }
 			  }
-		
 		return null;
-		
 	}
-	
 	
 	// getPassword:- fecthes the current password from datafile.
 	public String getPassword(int i) {
@@ -135,13 +127,7 @@ public class csvreader {
 			   } catch (Exception e) {
 			    e.printStackTrace();
 			   }
-			  }
-		
-		return null;
-		
+			  }	
+		return null;	
 	}
-	
-//	public static void main(String[] args) {
-//		int g = findrow("src/files/StudentInfo.csv",-1);
-//	}
 }
