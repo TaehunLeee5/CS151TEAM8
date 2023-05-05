@@ -28,8 +28,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 public class AfterLogin implements Initializable{
 	
+	// adding all of FXML variables to use them in this controller
 	@FXML
 	private Button logout;
 	@FXML
@@ -45,19 +47,19 @@ public class AfterLogin implements Initializable{
 	@FXML private TableColumn<Student, String> lastName;
 	@FXML private TableColumn<Student, String> year;
 	
-	
+	// log out function that takes an user back to the log in page
 	public void userLogout(ActionEvent event) throws IOException{
 		Main m = new Main();
 		m.changeScene("Login.fxml");
 	}
 	
+	//Take an user to the generating a new letter page
 	public void userGenerate(ActionEvent event) throws IOException{
 		Main m = new Main();
-		System.out.println("here");
 		m.changeScene("GenerateNew.fxml");
 	}	
 	
-	// deleting a row when you click the 'delete' button
+	// deleting a row when you click the 'delete' button and also deletes data in db
 	public void deleteRowFromTable(ActionEvent event) throws Exception{	
 		try {
 			if(tableview.getSelectionModel().getSelectedItem() != null){
@@ -84,7 +86,7 @@ public class AfterLogin implements Initializable{
 		}	
 	}
 	
-
+	// edit function will help an user to modify an exisiting letter of recommentdation
 	public void editRowFromTable(ActionEvent event) throws IOException{
 		
 		try {
@@ -113,16 +115,10 @@ public class AfterLogin implements Initializable{
 		}
 	}
 	
-	
-	
-	
-	
-	// below is what I've implemented for the search function
-	
 	// observable list to store data
 	private final ObservableList<Student> dataList = FXCollections.observableArrayList();
 		
-	
+	// Creating a Student class to save data for tableview list
 	public class Student{
 		private final SimpleIntegerProperty id;
 		private final SimpleStringProperty firstName;
@@ -136,30 +132,42 @@ public class AfterLogin implements Initializable{
 			this.year = new SimpleIntegerProperty(year);
 		}
 		
+		// ID getter
 		public int getID() {
 			return id.get();
 		}
+		
+		// ID setter
 		public void setid(int id) {
 			this.id.set(id);
 		}
 		
+		//FirstName getter
 		public String getFirstName() {
 			return firstName.get();
 		}
+		
+		//FirstName setter
 		public void setFirstName(String firstName) {
 			this.firstName.set(firstName);
 		}
 		
+		//LastName getter
 		public String getLastName() {
 			return lastName.get();
 		}
+		
+		//LastName setter
 		public void setLastName(String lastName) {
 			this.lastName.set(lastName);
 		}
 		
+		//Year getter
 		public int getYear() {
 			return year.get();
 		}
+		
+		//Year getter
 		public void setYear(int year) {
 			this.year.set(year);
 		}
@@ -202,18 +210,20 @@ public class AfterLogin implements Initializable{
 		    e.printStackTrace();
 		}
 		
-		FilteredList<Student> filtereData = new FilteredList<>(dataList, b -> true);
-		
+		//Being able to search wanted data on table view and display them based on Last Name, FirstName, and year
 		FilteredList<Student> filteredData = new FilteredList<>(dataList, b -> true);
 		SortedList<Student> sortedData = new SortedList<>(filteredData);
 		
 		sortedData.comparatorProperty().bind(tableview.comparatorProperty());
 		
+		//This is how to display information in the tableview with ID, first name, last name, and year
 		tableview.setItems(sortedData);
 		for (Student student : tableview.getItems()) {
 		    System.out.println("ID: " + student.getID() + ", First Name: " + student.getFirstName() +
 		                       ", Last Name: " + student.getLastName() + ", Year: " + student.getYear());
 		}
+		
+		//Implementing the searchBox and reading what an user types and will show the result
 		searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
 		    filteredData.setPredicate(student -> {
 		        if (newValue == null || newValue.isEmpty()) {
