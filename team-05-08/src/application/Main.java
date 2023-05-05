@@ -9,12 +9,13 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+// Main class that sets the size of the window of this project and setting stage
 public class Main extends Application {
 	
 	private static Stage stg;
 	
 	@Override
-	//	Start Function	
+	//Start Function takes a stage as an arugment and displays the window	
 	public void start(Stage primaryStage) {
 		stg = primaryStage;
 		primaryStage.setResizable(false);
@@ -30,12 +31,13 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+	// methods that takes a string to open the specific fxml file
 	public void changeScene(String fxml) throws IOException{
 		Parent pane = FXMLLoader.load(getClass().getResource(fxml));
 		stg.getScene().setRoot(pane);
 	}
-	
+
+	// function that runs the entire file for this project
  // ################################     MAIN FUNCTION    ########################################
 	public static void main(String[] args) {
 		launch(args);
