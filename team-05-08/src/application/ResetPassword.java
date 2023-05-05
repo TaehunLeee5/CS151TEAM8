@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
-
+// reset class that enables to reset password for an user
 public class ResetPassword {
 	@FXML
 	private Button resetButton;
@@ -33,6 +33,7 @@ public class ResetPassword {
 		String LatestPass = currpassword.getPassword(2);
 		csvwriter resetpw = new csvwriter();
 		
+		//check if the old passwords match and updates with a new password
 		if(LoginVal.equals("FALSE") && oldPassword.getText().toString().equals(PassValue) && newPassword.getText().toString().equals(renewPassword.getText().toString())) {
 			String nn = newPassword.getText().toString();
 			resetpw.updatecsv("src/files/usercreds.csv",1,2, nn);
@@ -53,6 +54,7 @@ public class ResetPassword {
 		
 	}
 	
+	// Cancel functions that directs an user back to login page
 	public void userCancel(ActionEvent event) throws IOException{
 		Main m = new Main();
 		m.changeScene("Login.fxml");
