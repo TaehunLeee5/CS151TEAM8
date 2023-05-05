@@ -22,12 +22,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
+// SavedReco page that displays a draft version of a letter of recommendation in one page and an user can edit on the page
 public class SavedReco implements Initializable {
 
 	String[] userVal;
 	 @FXML
 	    private TextArea textname;
 	@FXML
+
+// once an user clicks on Save button, it will save all of the data in db 
     public void SaveButton(ActionEvent event) throws IOException {
 		csvreader newob = new csvreader();
 		csvwriter newval = new csvwriter();
@@ -48,6 +51,7 @@ public class SavedReco implements Initializable {
 		Main m = new Main();
 		m.changeScene("AfterLogin.fxml");
     }
+	//getting info from the db 
 	public String getString(String arr) {
 		
 	    String[] values = arr.split("/");
@@ -62,6 +66,7 @@ public class SavedReco implements Initializable {
 	    return result;
 	}
 	
+	//this will decide which pronouns to use if the user is he or she and inputs all of the data into one document
 	@Override
 	public void initialize(URL url, ResourceBundle rb){
 		try {
