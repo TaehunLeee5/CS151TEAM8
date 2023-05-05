@@ -33,7 +33,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class GenerateNew implements Initializable {
-	
+//getting all of FXML variables to use them in this class
 	@FXML
 	private TextField CS151grade;
 	
@@ -118,7 +118,7 @@ public class GenerateNew implements Initializable {
     @FXML
     private Button saveButton;
     
-    
+    // making the add button functional in GenerteNew page to add courses taken with a professor
     @FXML
     void addcourse(ActionEvent event) {
         String course = courseTaken.getValue();
@@ -137,6 +137,7 @@ public class GenerateNew implements Initializable {
         listviewcourse.setItems(items);
     }
 
+    //Getting input data and putting them in a ObeservableList(String) 
     public String getListview(ListView<String> val) {
     	val.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     	ObservableList<String> topics;
@@ -145,20 +146,11 @@ public class GenerateNew implements Initializable {
     	if(val.equals(listviewcourse)) {
     		topics = val.getItems();    	}
     	
-    	//String[] grades = new String[] { CS151grade.getText(), cs146grade.getText(), cs152grade.getText(), cs154grade.getText(), cs160grade.getText(), cs256grade.getText(), CS166grade.getText() };
     	int i = 0;
     	for (String m : topics)
     	{	
     		System.out.println(m);
-    		list += m + "/ ";
-//    		if(val == courseTaken){
-//    			
-//    			list += m + ":" + "/ ";
-//    			i++;
-//    		}else {
-//    			
-//    		}
-    	    
+    		list += m + "/ ";    	    
     	} 
 
     	int pos= list.lastIndexOf("");
@@ -166,12 +158,14 @@ public class GenerateNew implements Initializable {
     	String selection= list.substring(0, pos);
     	return selection;
     }
+	
+    // Cancel button that will direct an user back to the afterlogin page where it shows a tableview
     public void userCancel1(ActionEvent event) throws IOException{
 		Main m = new Main();
 		m.changeScene("AfterLogin.fxml");
 	}
     
-    
+    // When an user clicks on edit button with a selected row, it directs an user to GenerateNew page and show saved data and be able to edit
     public void initData(Student student) throws IOException{
     	Student selectedStudent = student;
     	
@@ -181,7 +175,7 @@ public class GenerateNew implements Initializable {
     	int idv = selectedStudent.getID();
     	String stridv = String.valueOf(idv);
     	String[] userinf = idinfo.searchcsvid("src/files/StudentInfo.csv", stridv );
-    	// will need to connect to db
+    	
     	
     	datePicker.setText(userinf[2].toString());
     	gender.setText(userinf[3]);
@@ -195,14 +189,13 @@ public class GenerateNew implements Initializable {
     	academicCharacteristics.setText(userinf[9]);
     }
     
-    
+    //Compile button that will generate a draft version of a letter of recommendation
     public void userGenerateNew(ActionEvent event) throws IOException{
         try {
 	    	if (firstName.getText() != null || lastName.getText() != null || datePicker.getValue() != null 
 	        		|| gender.getValue() != null ||schoolName.getText() != null || programApplying.getValue() != null || 
 	        		firstYear.getText() != null || firstSemester.getValue() != null ) {
 	            csvwriter newStudentInfo = new csvwriter();
-	            //newStudentInfo.deleteRowWithIdMinusOne("src/files/StudentInfo.csv");
 	            String[] inputValues = new String[12];
 	            inputValues[0] = firstName.getText();
 	            inputValues[1] = lastName.getText();
@@ -222,8 +215,6 @@ public class GenerateNew implements Initializable {
 	            for (int i = 0; i < inputValues.length; i++) {
 	                System.out.println(inputValues[i]);
 	            }
-	            // Create an instance of Controller B and pass the input array as a parameter
-	
 	
 	            newStudentInfo.writeArrayToCsv(inputValues, "src/files/StudentInfo.csv");
 	            Main m = new Main();
@@ -236,15 +227,8 @@ public class GenerateNew implements Initializable {
 	    	System.out.println(ex.getMessage());
 	    }
     }
-//    @Override
-//    public void start(Stage primaryStage) throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("GenerateNew.fxml"));
-//        loader.setController(this);
-//        saveButton.setOnAction(e -> handleSaveButton());
-//
-//    }
     
-    
+	//initializing String lists for each section in the GenerateNew page
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	 
@@ -264,31 +248,15 @@ public class GenerateNew implements Initializable {
          ObservableList<String> list_academic = FXCollections.observableArrayList(academicCharacteristicsList);
          academicCharacteristics.getItems().addAll(list_academic);
          academicCharacteristics.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-         //gender.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
          
          String[] personalCharacteristicsList = csvreader.readcsvfile("src/files/initial_data_.csv","personal characteristics");
          ObservableList<String> list_personalCharacter = FXCollections.observableArrayList(personalCharacteristicsList);
          personalCharacteristics.getItems().addAll(list_personalCharacter);
-         personalCharacteristics.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-         //personalCharacteristics.getSelectionModel().selectedItemProperty().addListener(this::selectionChanged);
-         
+         personalCharacteristics.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);         
          
          String[] courseTakenList = csvreader.readcsvfile("src/files/initial_data_.csv","courses");
          ObservableList<String> list_course = FXCollections.observableArrayList(courseTakenList);
-         courseTaken.setItems(list_course);
-         
-         firstName.setText("Nikunj");
-         lastName.setText("Rana");
-         gender.setValue("Male");
-         programApplying.setValue("Master of Science");
-         firstSemester.setValue("Spring");
-         academicCharacteristics.getSelectionModel().selectAll();
-         personalCharacteristics.getSelectionModel().selectAll();
-         //courseTaken.getSelectionModel().selectAll();  
-             
-         
-    }  
-    
-    
-    
+         courseTaken.setItems(list_course);             
+        
+    }    
 }
