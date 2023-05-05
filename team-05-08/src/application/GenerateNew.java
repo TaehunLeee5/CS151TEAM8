@@ -176,17 +176,13 @@ public class GenerateNew implements Initializable {
     	String stridv = String.valueOf(idv);
     	String[] userinf = idinfo.searchcsvid("src/files/StudentInfo.csv", stridv );
     	
-    	
-    	datePicker.setText(userinf[2].toString());
-    	gender.setText(userinf[3]);
+	gender.setValue(userinf[3]);
     	schoolName.setText(userinf[4]);
-    	programApplying.setText(userinf[5]);
-    	firstSemester.setText(userinf[7]);
+    	programApplying.setValue(userinf[5]);
+    	firstSemester.setValue(userinf[7]);
     	firstYear.setText(userinf[6]);
-    	courseTaken.setText(userinf[8]);
-    	//letterGrade.setText(userinf[3]);
-    	personalCharacteristics.setText(userinf[10]);
-    	academicCharacteristics.setText(userinf[9]);
+    	courseTaken.setValue(userinf[8]);
+    	gradeField.setText(userinf[3]);  
     }
     
     //Compile button that will generate a draft version of a letter of recommendation
