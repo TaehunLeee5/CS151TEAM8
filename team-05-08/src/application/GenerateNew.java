@@ -18,6 +18,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import application.AfterLogin.Student;
 import javafx.collections.FXCollections;
 import java.time.format.DateTimeFormatter;
 import javafx.fxml.FXMLLoader;
@@ -168,6 +170,30 @@ public class GenerateNew implements Initializable {
 		Main m = new Main();
 		m.changeScene("AfterLogin.fxml");
 	}
+    
+    
+    public void initData(Student student) throws IOException{
+    	Student selectedStudent = student;
+    	
+    	firstName.setText(selectedStudent.getFirstName());
+    	lastName.setText(selectedStudent.getLastName());
+    	csvreader idinfo = new csvreader();
+    	int idv = selectedStudent.getID();
+    	String stridv = String.valueOf(idv);
+    	String[] userinf = idinfo.searchcsvid("src/files/StudentInfo.csv", stridv );
+    	// will need to connect to db
+    	
+    	datePicker.setText(userinf[2].toString());
+    	gender.setText(userinf[3]);
+    	schoolName.setText(userinf[4]);
+    	programApplying.setText(userinf[5]);
+    	firstSemester.setText(userinf[7]);
+    	firstYear.setText(userinf[6]);
+    	courseTaken.setText(userinf[8]);
+    	//letterGrade.setText(userinf[3]);
+    	personalCharacteristics.setText(userinf[10]);
+    	academicCharacteristics.setText(userinf[9]);
+    }
     
     
     public void userGenerateNew(ActionEvent event) throws IOException{

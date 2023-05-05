@@ -1,13 +1,13 @@
 package application;
 
 import javafx.beans.property.SimpleIntegerProperty;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
 import java.io.BufferedReader;
@@ -19,18 +19,19 @@ import javafx.collections.transformation.SortedList;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.Scene;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 public class AfterLogin implements Initializable{
 	
 	@FXML
 	private Button logout;
-	@FXML
-    private Button edit;
-    @FXML
-    private Button delete;
 	@FXML
 	private Button generateNew;
 	@FXML
@@ -56,52 +57,61 @@ public class AfterLogin implements Initializable{
 		m.changeScene("GenerateNew.fxml");
 	}	
 	
-	public void deleteRowFromTable(ActionEvent event) throws Exception{
-        try {
-            if(tableview.getSelectionModel().getSelectedItem() != null){
-                Student selectedItem = tableview.getSelectionModel().getSelectedItem();
-
-                // assign this variable to the ID number of the clicked row
-                Integer idNum = selectedItem.getID();
-                csvwriter s = new csvwriter();
-                // need to create .deleteRow method?
-                s.deleteRowWithId("src/files/StudentInfo.csv",idNum.toString());
-            }
-        }
-        catch (NullPointerException ex) {
-            ex.printStackTrace();
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        finally {
-            Main m = new Main();
-            m.changeScene("AfterLogin.fxml");
-        }
-    }
+	// deleting a row when you click the 'delete' button
+	public void deleteRowFromTable(ActionEvent event) throws Exception{	
+		try {
+			if(tableview.getSelectionModel().getSelectedItem() != null){
+				Student selectedItem = tableview.getSelectionModel().getSelectedItem();
+				
+				// assign this variable to the ID number of the clicked row
+				Integer idNum = selectedItem.getID();
+				
+				// need to create .deleteRow method?
+				csvwriter s = new csvwriter();
+				s.deleteRowWithId("src/files/StudentInfo.csv",idNum.toString());
+			}
+		}
+		catch (NullPointerException ex) {
+		    System.out.println(ex.getMessage());
+		}
+		catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		
+		finally {
+			Main m = new Main();
+			m.changeScene("AfterLogin.fxml");
+		}	
+	}
 	
 
-    // will need to work on the edit function
-    public void editRowFromTable(ActionEvent event) throws IOException{
-        //tableview.getitem().removeall(tableview.SelectionModel().getSelectedItem());
-        // Check if a row is selected
-        if (tableview.getSelectionModel().getSelectedItem() == null) {
-            Alert alert = new Alert(AlertType.ERROR, "No row selected.");
-            alert.showAndWait();
-            return;
-        }
-
-        // Get the selected row and assign it to "selectedData" object with all of its data
-        Student selectedData = tableview.getSelectionModel().getSelectedItem();
-
-        // and then bring up the generate a new letter page with pre-filled data to be able to edit
-        //need to Main constructor taking selecetData as an argument
-//        Main m = new Main(selectedData);
-//        m.changeScene("GenerateNew.fxml");
-
-
-    }
+	public void editRowFromTable(ActionEvent event) throws IOException{
+		
+		try {
+			if(tableview.getSelectionModel().getSelectedItem() != null){
+				
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(getClass().getResource("GenerateNew.fxml"));
+				Parent tableViewStudent = loader.load();
+				
+				Scene tableViewScene = new Scene(tableViewStudent);
+				
+				GenerateNew controller = loader.getController();
+				controller.initData(tableview.getSelectionModel().getSelectedItem());
+				
+				Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+				
+				window.setScene(tableViewScene);
+				window.show();
+				
+			
+			}
+		}
+		
+		catch (Exception ex){
+			System.out.println(ex.getMessage());
+		}
+	}
 	
 	
 	
@@ -192,7 +202,7 @@ public class AfterLogin implements Initializable{
 		    e.printStackTrace();
 		}
 		
-		FilteredList<Student> filterdData = new FilteredList<>(dataList, b -> true);
+		FilteredList<Student> filtereData = new FilteredList<>(dataList, b -> true);
 		
 		FilteredList<Student> filteredData = new FilteredList<>(dataList, b -> true);
 		SortedList<Student> sortedData = new SortedList<>(filteredData);
@@ -234,6 +244,6 @@ public class AfterLogin implements Initializable{
 	}
 	
 	
-	
-
 }
+
+

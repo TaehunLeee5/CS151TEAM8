@@ -29,7 +29,7 @@ public class csvreader {
 	    return "no value";
 	}
 	
-	public static String[] searchcsvid(String csvFilename, String value1) throws IOException {
+	public String[] searchcsvid(String csvFilename, String value1) throws IOException {
 	    BufferedReader csvReader = new BufferedReader(new FileReader(csvFilename));
 	    String row;
 	    
