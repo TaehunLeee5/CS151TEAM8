@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class csvreader {
 	
+	//Method that returns the row of a wanted csv file or no value
 	public static String searchcsv(String csvFilename, String value1, String value2, String value3) throws IOException {
 	    BufferedReader csvReader = new BufferedReader(new FileReader(csvFilename));
 	    String row;
@@ -29,6 +30,7 @@ public class csvreader {
 	    return "no value";
 	}
 	
+	// once it finds a wanted csvfile name, it reads the data to retrieve
 	public String[] searchcsvid(String csvFilename, String value1) throws IOException {
 	    BufferedReader csvReader = new BufferedReader(new FileReader(csvFilename));
 	    String row;
@@ -47,6 +49,7 @@ public class csvreader {
 	    return new String[0];
 	}
 	
+	//Finds the row that matches id number
 	public int findrow(String filePath,int i) {
 		BufferedReader reader = null;
 		try {
